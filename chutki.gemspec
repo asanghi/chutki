@@ -17,4 +17,8 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency "httparty", ">= 0.5.2"
 
+  [["shoulda",">= 2.10.3"],["mocha",">= 0.9.8"],["mcmire-matchy",">= 0.5.2"],["fakeweb",">= 1.2.8"]].each do |d|
+    gem.add_development_dependency d[0], d[1]
+  end
+
 end
