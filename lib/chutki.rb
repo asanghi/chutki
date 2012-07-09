@@ -2,8 +2,6 @@ require 'chutki/version'
 require 'httparty'
 
 class Chutki
-  VERSION = "0.0.1"
-
   include HTTParty
   base_uri "http://prosms.easy2approach.com"
 
@@ -18,7 +16,7 @@ class Chutki
     opts[:mobiles] = to
     opts[:message] = message
     opts[:senderid] = @sender_id
-    self.class.post("/sendhttp.php",opts)
+    makesend("/sendhttp.php",opts)
   end
 
   def check_dnd_balance
@@ -34,7 +32,7 @@ class Chutki
     if type && (["dnd","voice"].include?(type))
       opts[:type] = type
     end
-    makesned("/api/balance.php",opts)
+    makesend("/api/balance.php",opts)
   end
 
   def change_password(new_password)
@@ -52,7 +50,7 @@ class Chutki
   private
 
     def makesend(endpoint,opts = {})
-      self.class.posts(endpoint,opts.merge(options))
+      self.class.post(endpoint,opts.merge(options))
     end
 
     def options
