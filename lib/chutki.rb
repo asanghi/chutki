@@ -1,3 +1,4 @@
+require 'chutki/version'
 require 'httparty'
 
 class Chutki

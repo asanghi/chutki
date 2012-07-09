@@ -1,6 +1,6 @@
 # Chutki
 
-Chutki sends SMS thru a Web API
+Chutki sends SMS thru ProSMS Easy2Approach
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-    chutki = Chutki.new(username,password,senderid,{:endpoint => "your sms provider's end point"})
+    chutki = Chutki.new(username,password,senderid)
     result = chutki.send_sms(phone_number,message)
     if result.success?
       ...
