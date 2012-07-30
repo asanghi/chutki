@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-    chutki = Chutki.new(username,password,senderid)
+    chutki = Chutki.new({username: username, password: password, sender_id: sender_id})
     result = chutki.send_sms(phone_number,message)
     if result.success?
       ...
@@ -26,6 +26,22 @@ Or install it yourself as:
       ...
     end
     # See documentation for all result codes
+
+## For using this as an ActionMailer delivery method
+
+    in your config/initializers/chutki.rb
+
+    ActionMailer::Base.add_delivery_method :chutki, Chutki, {
+      username: "username",
+      password: "password",
+      sender_id: "sender_id"
+    }
+
+    in your app/mailer/yourmailer.rb
+
+    def welcome_sms(user)
+      mail :to => user.phone, :delivery_method => :chutki
+    end
 
 ## Contributing
 

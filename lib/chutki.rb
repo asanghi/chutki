@@ -5,18 +5,26 @@ class Chutki
   include HTTParty
   base_uri "http://prosms.easy2approach.com"
 
-  def initialize(username,password,sender_id)
-    @username = username
-    @password = password
-    @sender_id = sender_id
+  def initialize(options)
+    @options = options
+    @username = options[:username]
+    @password = options[:password]
+    @sender_id = options[:sender_id]
   end
 
   def send_sms(message,to,opts = {})
     opts ||= {}
     opts[:mobiles] = to
     opts[:message] = message
-    opts[:senderid] = @sender_id
     makesend("/sendhttp.php",opts)
+  end
+
+  def deliver(mail)
+    send_sms(mail.body,mail.to[0])
+  end
+
+  def deliver!(mail)
+    deliver(mail)
   end
 
   def check_dnd_balance
@@ -50,11 +58,7 @@ class Chutki
   private
 
     def makesend(endpoint,opts = {})
-      self.class.post(endpoint,opts.merge(options))
-    end
-
-    def options
-      {:user => @username, :password => @password}
+      self.class.post(endpoint,opts.merge(@options))
     end
 
 end
