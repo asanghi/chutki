@@ -7,9 +7,9 @@ class Chutki
 
   def initialize(options)
     @options = options
-    @username = options[:username]
+    @username = options[:user]
     @password = options[:password]
-    @sender_id = options[:sender_id]
+    @sender_id = options[:sender]
   end
 
   def send_sms(message,to,opts = {})
