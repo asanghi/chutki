@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-    chutki = Chutki.new({username: username, password: password, sender_id: sender_id})
+    chutki = Chutki.new({user: username, password: password, sender: sender_id})
     result = chutki.send_sms(phone_number,message)
     if result.success?
       ...
@@ -32,9 +32,9 @@ Or install it yourself as:
     in your config/initializers/chutki.rb
 
     ActionMailer::Base.add_delivery_method :chutki, Chutki, {
-      username: "username",
+      user: "username",
       password: "password",
-      sender_id: "sender_id"
+      sender: "sender_id"
     }
 
     in your app/mailer/yourmailer.rb
