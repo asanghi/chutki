@@ -58,7 +58,7 @@ class Chutki
   private
 
     def makesend(endpoint,opts = {})
-      self.class.post(endpoint,opts.merge(@options))
+      self.class.post(endpoint,:query => {opts.merge(@options)})
     end
 
 end
