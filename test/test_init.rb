@@ -6,7 +6,7 @@ class InitTest < Test::Unit::TestCase
 
     should "require username and password and senderid" do
       lambda { Chutki.new }.should raise_error(ArgumentError)
-      Chutki.new({username: "username", password: "password", sender_id: "senderid"})
+      Chutki.new({user: "username", password: "password", sender: "senderid"})
     end
   end
 
@@ -17,8 +17,8 @@ class InitTest < Test::Unit::TestCase
     end
 
     context "Sending SMS" do
-      @chutki = Chutki.new({username: "username", password: "password", sender_id: "senderid"})
-      Chutki.expects(:post).with("/sendhttp.php", :mobiles => "phonenumber", :message => "message", :username => "username", :password => "password", :sender_id => "senderid")
+      @chutki = Chutki.new({user: "username", password: "password", sender: "senderid"})
+      Chutki.expects(:post).with("/sendhttp.php", :mobiles => "phonenumber", :message => "message", :user => "username", :password => "password", :sender => "senderid")
       @chutki.send_sms("message","phonenumber",{})
     end
 
