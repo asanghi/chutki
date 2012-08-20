@@ -5,11 +5,17 @@ class Chutki
   include HTTParty
   base_uri "http://prosms.easy2approach.com"
 
-  def initialize(options)
+  attr_reader :options
+
+  def initialize(options = {})
     @options = options
     @username = options[:user]
     @password = options[:password]
     @sender_id = options[:sender]
+  end
+
+  def settings!(options)
+    @options.merge!(options)
   end
 
   def send_sms(message,to,opts = {})
